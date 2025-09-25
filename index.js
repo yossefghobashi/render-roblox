@@ -13,7 +13,7 @@ app.post("/", async (req, res) => {
     let translated = null;
 
     try {
-      const tResponse = await fetch("https://libretranslate.de/translate", {
+      const tResponse = await fetch("https://translate.argosopentech.com/translate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,6 +27,8 @@ app.post("/", async (req, res) => {
       });
 
       const data = await tResponse.json();
+      console.log("Translation API response:", data);
+
       if (data?.translatedText && data.translatedText.trim() !== message.trim()) {
         translated = data.translatedText;
       }
